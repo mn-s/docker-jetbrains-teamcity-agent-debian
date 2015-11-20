@@ -28,3 +28,4 @@ WORKDIR         $APP_STATIC_DIR
 EXPOSE          $APP_LISTEN_PORT
 
 CMD             bin/agent.sh run
+
