@@ -12,14 +12,14 @@ LABEL           description="TeamCity Agent" \
                 build=$APP_BUILD \
                 url="https://www.jetbrains.com/teamcity/"
 	
-ADD             https://download.jetbrains.com/teamcity/TeamCity-${APP_VERSION}.${APP_BUILD}.tar.gz /tmp/teamcity.tar.gz
-
-#COPY           TeamCity-${APP_VERSION}.${APP_BUILD}.tar.gz /tmp/teamcity.tar.gz
-
 RUN             apt-get update \
                 && apt-get install -y openjdk-7-jre-headless \
-                && tar -xzvf /tmp/teamcity.tar.gz -C /tmp/ \
+                && apt-get install -y wget \
+                && wget -q -P /tmp https://download.jetbrains.com/teamcity/TeamCity-${APP_VERSION}.${APP_BUILD}.tar.gz \
+                && tar -xzvf /tmp/TeamCity-${APP_VERSION}.${APP_BUILD}.tar.gz -C /tmp/ \
                 && mv /tmp/TeamCity/buildAgent $APP_STATIC_DIR \
+                && apt-get purge -y wget \
+                && apt-get autoclean \
                 && apt-get clean \
                 && rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/* 
 
