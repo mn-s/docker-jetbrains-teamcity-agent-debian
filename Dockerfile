@@ -3,7 +3,7 @@ FROM            debian:jessie
 MAINTAINER      "Mikhail Stolyarov" <schnack.desu@gmail.com>
 
 ENV             APP_VERSION=9.1 \
-                APP_BUILD=6 \
+                APP_BUILD=7 \
                 APP_STATIC_DIR=/opt/teamcity_agent \
                 APP_LISTEN_PORT=9090
 
